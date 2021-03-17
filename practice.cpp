@@ -52,12 +52,12 @@ class list {
         list();
         ~list();
 
-        int add(employee new_emp);
-        //int search();
-        //int remove();
-        //int display();
-        //int count();
-        //int destroy();
+        int add();
+        int search();
+        int remove();
+        int display();
+        int count();
+        int destroy();
 
     private : 
         node * head;
@@ -225,13 +225,15 @@ employee::employee() {
 // copy constructor
 employee::employee(person info) {
 
+    srand(time(0));
+
     // allocate just the right amount of memory for appropriate data members 
     this->name = new char[strlen(info.name)];
     this->age = new char[strlen(info.age)];
     this->sex = new char[strlen(info.sex)];
     
     // assign employee id & copy over employee info
-    //this->eid = randomly generated 10-digit ID, must be unique (function)
+    this->eid = time(NULL) + rand()%100000000;
     strcpy(this->name, info.name);
     strcpy(this->age, info.age);
     strcpy(this->sex, info.sex);
@@ -254,3 +256,26 @@ employee::~employee() {
         delete [] this->sex;
     }
 }
+
+// display 
+int employee::display() {
+    if(!this.eid) {
+        cout << "empty employee object"
+        return 0;
+    }
+
+    cout << this.eid;
+    cout << this.name;
+    cout << this.age;
+    cout << this.sex;
+    return 1;
+}
+
+
+// LIST CLASS FUNCTIONS
+int add();
+int search();
+int remove();
+int display();
+int count();
+int destroy();
